@@ -28,12 +28,24 @@ const config: HardhatUserConfig = {
   w3f: {
     rootDir: "./web3-functions",
     debug: false,
-    networks: ["mumbai", "goerli", "baseGoerli"], //(multiChainProvider) injects provider for these networks
+    networks: ["hardhat"], //(multiChainProvider) injects provider for these networks
   },
 
   namedAccounts: {
     deployer: {
       default: 0,
+    },
+    owner: {
+      default: 1,
+    },
+    tree: {
+      default: 2,
+    },
+    keeper: {
+      default: 3,
+    },
+    placeholderAddress: {
+      default: 4,
     },
   },
 
@@ -42,8 +54,7 @@ const config: HardhatUserConfig = {
   networks: {
     hardhat: {
       forking: {
-        url: `https://eth-goerli.g.alchemy.com/v2/${ALCHEMY_ID}`,
-        blockNumber: 8664000,
+        url: `https://eth-mainnet.g.alchemy.com/v2/${ALCHEMY_ID}`,
       },
     },
 
