@@ -17,7 +17,7 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
   const provider = multiChainProvider.default();
 
   try {
-    console.log("test starting");
+    console.log("test web3 function");
     const {
       multisigClaimAddress,
       tokenAddress,
@@ -96,14 +96,19 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
 
     return {
       canExec: true,
-      callData: claimAndBribe.interface.encodeFunctionData("claimAndBribeAll", [
-        gearboxIndex,
-        rewardAmount,
-        gearboxMerkleProof,
-        auraProposalHash,
-        balancerProposalHash,
-        tokenAddress,
-      ]),
+      callData: [
+        {
+          to: claimAndBribe.address,
+          data: claimAndBribe.interface.encodeFunctionData("claimAndBribeAll", [
+            gearboxIndex,
+            rewardAmount,
+            gearboxMerkleProof,
+            auraProposalHash,
+            balancerProposalHash,
+            tokenAddress,
+          ]),
+        },
+      ],
     };
   } catch (err) {
     return { canExec: false, message: err };

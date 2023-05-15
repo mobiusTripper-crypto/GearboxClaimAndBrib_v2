@@ -3,7 +3,7 @@ import ky from "ky";
 import ClaimAndBribeABI from "../../artifacts/contracts/GearboxClaimAndBrib.sol/GearboxClaimAndBrib.json";
 import { GEARBOX_MERKLE_BASE_URL } from "./constants";
 
-const GearAirdropDistributorABI = [
+const gearAirdropDistributorABI = [
   "function merkleRoot() external view returns(bytes32)",
 ];
 
@@ -23,14 +23,14 @@ export default async function getGearboxData(
       provider
     );
 
-    const gearboxTreeAddress = "0xA7Df60785e556d65292A2c9A077bb3A8fBF048BC";
-    //(await claimAndBribeContract.gearboxTree()) as string;
+    const gearboxTreeAddress =
+      (await claimAndBribeContract.gearboxTree()) as string;
 
     console.log("gearboxTreeAddress", gearboxTreeAddress);
 
     const contract = new Contract(
       gearboxTreeAddress,
-      GearAirdropDistributorABI,
+      gearAirdropDistributorABI,
       provider
     );
 

@@ -9,20 +9,20 @@ describe("Test ClaimAndBrib Contract", function () {
     const [deployer, owner, tree, keeper, placeholderAddress] =
       await ethers.getSigners();
 
-    const MockERC20 = await ethers.getContractFactory("MockERC20");
-    const mockERC20 = await MockERC20.deploy(
+    const mockERC20Factory = await ethers.getContractFactory("MockERC20");
+    const mockERC20 = await mockERC20Factory.deploy(
       "MockERC20",
       "ME2",
       deployer.address,
       ethers.utils.parseUnits("10000", 18) // inital mock token balance
     );
 
-    const GearboxClaimAndBrib = await ethers.getContractFactory(
+    const gearboxClaimAndBribFactory = await ethers.getContractFactory(
       "GearboxClaimAndBrib"
     );
 
     //TODO: added legitimate values for constructor
-    const gearboxClaimAndBrib = await GearboxClaimAndBrib.deploy(
+    const gearboxClaimAndBrib = await gearboxClaimAndBribFactory.deploy(
       keeper.address,
       placeholderAddress.address,
       placeholderAddress.address,
