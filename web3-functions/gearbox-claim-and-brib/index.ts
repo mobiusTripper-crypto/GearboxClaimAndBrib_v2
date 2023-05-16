@@ -17,7 +17,7 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
   const provider = multiChainProvider.default();
 
   try {
-    console.log("test web3 function");
+    console.log("web3 gearbox-claim-and-bribe function start");
     const {
       multisigClaimAddress,
       tokenAddress,
@@ -31,6 +31,9 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
       ClaimAndBribeABI.abi,
       provider
     );
+
+    console.log("will not run next line");
+    console.log(await claimAndBribe.lastRun());
 
     const lastUpdated = parseInt(await claimAndBribe.lastRun());
     const minWaitPeriodSeconds = parseInt(
