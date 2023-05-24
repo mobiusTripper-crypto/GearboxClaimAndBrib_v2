@@ -26,16 +26,16 @@ const func: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
       "0x7Cdf753b45AB0729bcFe33DC12401E55d28308A9",
       randomUser.address,
       50,
-      100, // 2 weeks in seconds
+      100,
     ],
   });
 
   //  set in gearbox tree address
-  const contract = await hre.ethers.getContractAt(
-    "GearboxClaimAndBrib",
-    gearboxClaimAndBrib.address
-  );
-  await contract.setGearboxTree("0xA7Df60785e556d65292A2c9A077bb3A8fBF048BC");
+  // const contract = await hre.ethers.getContractAt(
+  //   "GearboxClaimAndBrib",
+  //   gearboxClaimAndBrib.address
+  // );
+  // await contract.setGearboxTree("0xA7Df60785e556d65292A2c9A077bb3A8fBF048BC");
 };
 
 export default func;

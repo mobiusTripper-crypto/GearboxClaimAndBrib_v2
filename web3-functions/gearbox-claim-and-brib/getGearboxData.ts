@@ -35,6 +35,7 @@ export default async function getGearboxData(
     const gearboxMerkleProofURL = `${GEARBOX_MERKLE_BASE_URL}mainnet_${
       ethers.utils.isHexString(merkleRoot) ? merkleRoot.slice(2) : merkleRoot
     }.json`;
+
     const gearboxResponse: any = await ky
       .get(gearboxMerkleProofURL, { timeout: 5_000, retry: 0 })
       .json();
