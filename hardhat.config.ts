@@ -32,20 +32,8 @@ const config: HardhatUserConfig = {
   },
 
   namedAccounts: {
-    deployer: {
+    depolyer: {
       default: 0,
-    },
-    owner: {
-      default: 1,
-    },
-    tree: {
-      default: 2,
-    },
-    keeper: {
-      default: 3,
-    },
-    placeholderAddress: {
-      default: 4,
     },
   },
 

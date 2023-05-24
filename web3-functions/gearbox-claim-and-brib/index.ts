@@ -31,9 +31,16 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
       ClaimAndBribeABI.abi,
       provider
     );
+    console.log(
+      "web3 function",
+      claimAndBribe.address,
+      (await provider.getNetwork()).chainId,
+      provider.blockNumber
+    );
+    console.log("contract address from config", claimAndBribe.address);
 
-    console.log("will not run next line");
     console.log(await claimAndBribe.gearboxTree());
+    console.log("SUCCESS");
 
     const lastUpdated = parseInt(await claimAndBribe.lastRun());
     const minWaitPeriodSeconds = parseInt(
@@ -64,15 +71,6 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
         claimAndBribeContractAddress,
         provider
       );
-
-    console.log(
-      "reward",
-      rewardAmount,
-      `Reward amount ${ethers.utils.formatEther(
-        rewardAmount
-      )} is less than minimum amount.`,
-      BigNumber.from(rewardAmount).lt(minimumReward)
-    );
 
     if (BigNumber.from(rewardAmount).lt(minimumReward)) {
       const message: unknown = `Reward amount ${ethers.utils.formatEther(
