@@ -1,7 +1,7 @@
 {
-  "multisigClaimAddress": "0x94f2bfbc27655Dd5489B42E2e5D84805E143ca95",
+  "multisigClaimAddress": "0xa1Cd2838D7D402176BC9D260b957ace715fE2Af1",
   "tokenAddress": "0xBa3335588D9403515223F109EdC4eB7269a9Ab5D",
   "gaugeToBribeAddress": "0x19A13793af96f534F0027b4b6a3eB699647368e7",
   "claimAndBribeContractAddress": "0xa1Cd2838D7D402176BC9D260b957ace715fE2Af1",
-  "minimumReward": "100000000000000000000"
+  "minimumReward": "10000000000"
 }

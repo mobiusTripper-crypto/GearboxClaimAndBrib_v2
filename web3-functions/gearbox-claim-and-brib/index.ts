@@ -40,7 +40,6 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
     console.log("contract address from config", claimAndBribe.address);
 
     console.log(await claimAndBribe.gearboxTree());
-    console.log("SUCCESS");
 
     const lastUpdated = parseInt(await claimAndBribe.lastRun());
     const minWaitPeriodSeconds = parseInt(
@@ -71,6 +70,7 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
         claimAndBribeContractAddress,
         provider
       );
+    console.log("SUCCESS 1");
 
     if (BigNumber.from(rewardAmount).lt(minimumReward)) {
       const message: unknown = `Reward amount ${ethers.utils.formatEther(
@@ -81,10 +81,12 @@ Web3Function.onRun(async (context: Web3FunctionContext) => {
         message: message,
       };
     }
+    console.log("SUCCESS 2");
 
     const balancerProposalHash = await getBalancerProposalHash(
       gaugeToBribeAddress
     );
+
     const auraProposalHash = await getAuraProposalHash(gaugeToBribeAddress);
 
     console.log(`claimAndBrib function

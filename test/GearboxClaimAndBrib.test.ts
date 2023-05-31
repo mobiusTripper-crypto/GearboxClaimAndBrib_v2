@@ -115,24 +115,24 @@ describe("Test ClaimAndBrib Contract", function () {
   context("claim", function () {
     it("should claim tokens from gearbox", async function () {
       const merkleString = [
-        "0xbbc4f4deb86d81f45aad22073990d13c8dde74b94a848177e9d2ba0f4135a517",
-        "0x40b4cf25b6d3413375d8261bc0ac7a50b1475ecd84eb384641aa3406f9656ebb",
-        "0xfadd5b14608f42ce1a1cd9ee13a0d69e0882b5025a0095cb6c973b1246413c5b",
-        "0x4823e5a8c8923c3dbfb63a7fa5b5d68bd2a35fb5b61ebceb70faa90b3d7f526d",
-        "0x072aa7aaf91a595b1a0188206f0ad22667f8d28a3e666794abfcea0a1d65c48a",
-        "0x109a95bb4cdf4dba5504feb641347498704eeb0cd8fe46beee6139429d3293fe",
-        "0x0ed84c7fcd143b096195e34549739bbf459cc5c96efb2d254657c28afa4ace46",
-        "0x57fab112daf087d2cf2f623b537095982e281805e2a465a42810c1c51a1c2da2",
-        "0x485f12cab8aa3f29273669b3a391fbc1f63a05fa4e05287b0aaeb57514f8b94e",
-        "0x77f5b03f36ef8c06f4cd92207d0fa72b93b3e196e53c851cb04109d89e1beabb",
-        "0xdfcf4a2074409c3928055fbc5cb01ebb8ae607358988f9427ea5458397257457",
-        "0x392cc567fdbba95c751e39eab88b3ec0cee29628826c7189236f0e0fb4f77516",
-        "0x0a9d23624ba6112145c278e34411db55cf546f62a0ec8432637028751d7707c1",
+        "0x2ab11d2e64e41f663726c63984310ad5fb1c9f785823964a01a23aa119bf0813",
+        "0xb48cd5b56944e54d567fefc11f14818789aca5e8a06024e109673f0c3b98d6b1",
+        "0x8b544f9f3dbca6e8a45ead7f2788d5936aea5af24424485547cfb939f3d6d97b",
+        "0x12df3695027f5b876cdef8b292674dd115186064554ba94111ff955d4c8c4b30",
+        "0x31cb6c52beb644a04f1db9241e0819c5ce5b6bbf54b1ea257ababab2ba8ae9a0",
+        "0x4d31b3260d6210c29454d019cb5165ac9430a8efb3cead0317908ee2746918c1",
+        "0xd20fc47850ad20bd1d70fdfb65b2ff955af765c1fc0915a3b07f7f82d6f3159d",
+        "0x2d50a584c143b4c45a2b8d275dbe8d067e044b103eed61da36dda68915f40ede",
+        "0xbb883a46a88a85752c85aa20d50f938cbc11fe05baca9d91f481986afe0b3989",
+        "0x801ac51f6a3361e70323f0212d768741f9f038dd36f296a4f7d8589d37a7552a",
+        "0xbc7732404a5c8b3aed611fd03e988e05fc5c48cf83473b016527fead0c644dad",
+        "0x5d8fd6beff3a724dd33742b5642e86ba9fa142aeaa553ec9c135b4bfce20a51d",
+        "0x33519c1af7c0a07c3730f0a7e7b3281d3f77ef948d944ea0ae5f38d0e7235646",
       ];
 
       const tx = await gearboxClaimAndBrib
         .connect(keeper)
-        .claim(7022, "0x0250d84147f64dea48bcd3", merkleString);
+        .claim(6439, "0x4563918244f40000", merkleString);
 
       //console.log(tx);
     });
@@ -150,14 +150,27 @@ describe("Test ClaimAndBrib Contract", function () {
 
       await gearboxClaimAndBrib.connect(deployer1).setBribAllEnabled(true);
 
-      await mockERC20.mint(gearboxClaimAndBrib.address, TEST_AMOUNT);
+      // await mockERC20.mint(gearboxClaimAndBrib.address, TEST_AMOUNT);
+
+      const geartoken = await ethers.getContractAt(
+        "MockERC20",
+        "0xBa3335588D9403515223F109EdC4eB7269a9Ab5D"
+      );
+
+      console.log(
+        "balance",
+        geartoken.address,
+        await geartoken.balanceOf(gearboxClaimAndBrib.address)
+      );
+
+      console.log("test contract address", gearboxClaimAndBrib.address);
 
       const tx = await gearboxClaimAndBrib
         .connect(keeper)
         .bribAll(
           "0x3512436da14ed8278b9dfa252f13a38cdb9e86ff219d1e520507486858cfc891",
           "0x4735553b91be8926bebb90d63080bc66942e8b953232f2257272e60476f1d7dd",
-          mockERC20.address
+          "0xBa3335588D9403515223F109EdC4eB7269a9Ab5D"
         );
 
       console.log(tx);

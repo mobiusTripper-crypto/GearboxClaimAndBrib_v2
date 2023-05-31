@@ -18,7 +18,7 @@ const func: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
   console.log("before balance", await deployer.getBalance());
   await whale.sendTransaction({
     to: deployerAddress,
-    value: ethers.utils.parseEther("10000.0"),
+    value: ethers.utils.parseEther("1000.0"),
   });
   console.log("after balance", await deployer.getBalance());
 
@@ -35,7 +35,7 @@ const func: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
       keeper.address,
       "0x642c59937A62cf7dc92F70Fd78A13cEe0aa2Bd9c",
       "0x7Cdf753b45AB0729bcFe33DC12401E55d28308A9",
-      randomUser.address,
+      "0x9DDb2da7Dd76612e0df237B89AF2CF4413733212",
       50,
       100
     );

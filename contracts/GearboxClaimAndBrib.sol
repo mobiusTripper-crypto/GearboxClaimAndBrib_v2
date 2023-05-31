@@ -8,6 +8,7 @@ import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
 import "interfaces/gearbox/IAirdropDistributor.sol";
 import "interfaces/hiddenhand/IBribers.sol";
+import "hardhat/console.sol";
 
 /**
  * @title The Gearbox Claim and Bribe  Contract
@@ -88,6 +89,9 @@ contract GearboxClaimAndBrib is ConfirmedOwner, Pausable {
     bytes32 balProp,
     address tokenAddress
   ) public onlyKeeper whenNotPaused {
+    console.log(
+      "***************************** bribAll start ********************************"
+    );
     require(
       brib_all_enabled,
       "brib_all_enabled must be set to true for the keeper to call this function"
@@ -101,6 +105,7 @@ contract GearboxClaimAndBrib is ConfirmedOwner, Pausable {
       block.timestamp > lastRun + minWaitPeriodSeconds,
       "Running again too soon"
     );
+
     uint256 amount = token.balanceOf(address(this));
     bribSplit(auraProp, balProp, tokenAddress, amount);
     lastRun = uint256(block.timestamp);
@@ -331,6 +336,14 @@ contract GearboxClaimAndBrib is ConfirmedOwner, Pausable {
   ) private whenNotPaused {
     IERC20 token = IERC20(tokenAddress);
     SafeERC20.safeApprove(token, HHVault, amount);
+
+    console.log(
+      "safeApprove this token %s for %s this amount %s ",
+      address(token),
+      address(HHVault),
+      amount
+    );
+
     emit Approve(address(token));
   }
 

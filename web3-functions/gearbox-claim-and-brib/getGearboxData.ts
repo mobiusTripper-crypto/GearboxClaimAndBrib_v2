@@ -36,15 +36,22 @@ export default async function getGearboxData(
       ethers.utils.isHexString(merkleRoot) ? merkleRoot.slice(2) : merkleRoot
     }.json`;
 
+    console.log(gearboxMerkleProofURL);
+
     const gearboxResponse: any = await ky
       .get(gearboxMerkleProofURL, { timeout: 5_000, retry: 0 })
       .json();
 
+    console.log("got response");
     const gearboxData = gearboxResponse["claims"][multisigClaimAddress];
+    console.log(gearboxData);
 
     const gearboxIndex = gearboxData.index as number;
+    console.log("1");
     const gearboxMerkleProof = gearboxData.proof as string;
+    console.log("2");
     const rewardAmount = gearboxData.amount as string;
+    console.log("3");
 
     return { gearboxIndex, gearboxMerkleProof, rewardAmount };
   } catch (error) {

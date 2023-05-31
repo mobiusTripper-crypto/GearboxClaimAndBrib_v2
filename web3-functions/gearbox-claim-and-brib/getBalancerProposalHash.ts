@@ -22,6 +22,7 @@ export default async function getBalancerProposalHash(
   const hiddenHandBalancerData = hiddenHandBalancerResponse["data"] as [
     HiddenHandBalancerProposalType
   ];
+  console.log("SUCCESS");
 
   const balancerProposals = hiddenHandBalancerData.filter(
     (proposal) =>
@@ -34,6 +35,7 @@ export default async function getBalancerProposalHash(
     throw `Error when getting balancer proposal, more than one proposal found for "${gaugeToBribeAddress}"`;
   }
   const balancerProposalHash = balancerProposals[0].proposalHash;
+  console.log("SUCCESS");
 
   return balancerProposalHash;
 }
